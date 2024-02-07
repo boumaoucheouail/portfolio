@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo Gallery</title>
+
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        body,
+        h1,
+        h2,
+        p,
+        ul,
+        address {
+            margin: 0;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+            border-radius: .5rem;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            line-height: 1.5;
+            background: #111111;
+            color: #fff;
+        }
+
+        main {
+            max-width: 62rem;
+            margin: 0 auto;
+        }
+
+        /* header start */
+        .hero {
+            padding: 2rem 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        .hero h1>span {
+            display: block;
+        }
+
+        .hero h1>span:last-child {
+            color: rgb(235, 160, 73);
+        }
+
+        .hero__content {
+            max-width: 48ch;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero__content>*+* {
+            margin-top: 1rem;
+        }
+
+        .hero address {
+            font-style: inherit;
+            color: rgb(235, 160, 73);
+        }
+
+        .hero address li {
+            display: flex;
+            align-items: center;
+        }
+
+        .hero address li>*+* {
+            margin-left: .5rem;
+        }
+
+        .hero address a {
+            color: inherit;
+        }
+
+        .hero address svg {
+            fill: currentColor;
+            width: 1.25em;
+        }
+
+        .hero__photo {
+            position: absolute;
+            width: 45%;
+            top: 2rem;
+            right: 1rem;
+            transform: rotate(10deg);
+        }
+
+        .hero__photo::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(17, 17, 17, 1) 100%);
+        }
+
+        @media (min-width: 38rem) {
+            .hero {
+                padding: 8rem 4rem;
+            }
+
+            .hero address ul {
+                display: flex;
+            }
+
+            .hero address ul>*+* {
+                margin-left: 1rem;
+            }
+
+            .hero__photo {
+                position: absolute;
+                width: 45%;
+                top: 4rem;
+                right: 1rem;
+                transform: rotate(10deg);
+            }
+
+        }
+
+        /* header end */
+
+        /* gallery start */
+        .gallery {
+            padding: 1rem;
+        }
+
+        .gallery h2 {
+            font-size: 2rem;
+            line-height: 1.25;
+            margin-bottom: 2rem;
+        }
+
+        .gallery>ul {
+            display: grid;
+            gap: 1rem;
+            grid-template-columns: repeat(auto-fit, minmax(21rem, 1fr));
+        }
+
+        @media (min-width: 38rem) {
+            .gallery h2 {
+                padding-left: 3rem;
+            }
+        }
+
+        /* gallery end */
+
+
+        /* photo start */
+        .photo {
+            position: relative;
+            aspect-ratio: 1;
+        }
+
+
+        .photo img {
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .photo::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0) 75%, rgba(17, 17, 17, 1) 100%);
+        }
+
+        .photo p {
+            position: absolute;
+            left: .5rem;
+            bottom: .5rem;
+            z-index: 1;
+        }
+
+        @supports not (aspect-ratio: 1) {
+
+            .photo {
+                /* retro compatible aspect-ratio */
+                height: 0;
+                padding-top: 100%;
+            }
+
+            .photo img {
+                /* retro compatible aspect-ratio */
+                position: absolute;
+                top: 0;
+                left: 0;
+            }
+        }
+
+        /* photo end */
+    </style>
+</head>
+
+<body>
+    <main>
+        <header class="hero">
+            <div class="hero__content">
+                <h1><span>Boumaouche</span><span>Ouail,</span><span>Pâtissier</span></h1>
+                <p>Pellentesque a porttitor orci, ac posuere tortor. Maecenas sodales blandit ante, eget imperdiet elit
+                    vehicula ac.</p>
+                <address>
+                    <ul>
+                        <li>
+                            <svg version="1.1" id="_x32_" xmlns="http://www.w3.org/2000/svg"
+                                xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" xml:space="preserve">
+                                <g>
+                                    <path class="st0" d="M94.811,21.696c-35.18,22.816-42.091,94.135-28.809,152.262c10.344,45.266,32.336,105.987,69.42,163.165
+c34.886,53.79,83.557,102.022,120.669,129.928c47.657,35.832,115.594,58.608,150.774,35.792
+c17.789-11.537,44.218-43.058,45.424-48.714c0,0-15.498-23.896-18.899-29.14l-51.972-80.135
+c-3.862-5.955-28.082-0.512-40.386,6.457c-16.597,9.404-31.882,34.636-31.882,34.636c-11.38,6.575-20.912,0.024-40.828-9.142
+c-24.477-11.262-51.997-46.254-73.9-77.947c-20.005-32.923-40.732-72.322-41.032-99.264c-0.247-21.922-2.341-33.296,8.304-41.006
+c0,0,29.272-3.666,44.627-14.984c11.381-8.392,26.228-28.286,22.366-34.242l-51.972-80.134c-3.401-5.244-18.899-29.14-18.899-29.14
+C152.159-1.117,112.6,10.159,94.811,21.696z" />
+                                </g>
+                            </svg>
+
+                            <a href="tel:+213781695385">+213 781 69 53 85</a>
+                        </li>
+                        <li>
+                            <svg version="1.1" id="_x32_" xmlns="http://www.w3.org/2000/svg"
+                                xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" xml:space="preserve">
+                                <g>
+                                    <path class="st0" d="M0,64v384h512V64H0z M264.132,266.765c-1.996,1.688-4.95,2.657-8.1,2.657c-3.153,0-6.098-0.964-8.083-2.642
+                               L48,112h416L264.132,266.765z M95.11,194.306l69.518,58.954L48,368V160L95.11,194.306z M199.288,282.652l16.35,13.866
+                               c10.836,9.215,25.169,14.288,40.361,14.288c15.236,0,29.588-5.071,40.418-14.282l16.321-13.846L432,400H80L199.288,282.652z
+                                M347.394,253.282L464,160v208L347.394,253.282z" />
+                                </g>
+                            </svg>
+                            <a href="mailto:boumaoucheouail@gmail.com">boumaoucheouail@gmail.com</a>
+                        </li>
+                    </ul>
+                </address>
+            </div>
+            <div class="hero__photo">
+                <img src="assets/images/photo-ouail.jpg" alt="boumaouche ouail">
+            </div>
+        </header>
+        <article class="gallery">
+            <h2>Vivamus gravida vestibulum</h2>
+
+            <ul>
+                <li>
+                    <div class="photo">
+                        <img src="https://picsum.photos/900/600?random=1" alt="">
+                        <p>Lorem ipsum dolor sit amet.</p>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="photo">
+                        <img src="https://picsum.photos/900/600?random=2" alt="">
+                        <p>Lorem ipsum dolor sit amet.</p>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="photo">
+                        <img src="https://picsum.photos/900/600?random=3" alt="">
+                        <p>Lorem ipsum dolor sit amet.</p>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="photo">
+                        <img src="https://picsum.photos/900/600?random=4" alt="">
+                        <p>Lorem ipsum dolor sit amet.</p>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="photo">
+                        <img src="https://picsum.photos/900/600?random=5" alt="">
+                        <p>Lorem ipsum dolor sit amet.</p>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="photo">
+                        <img src="https://picsum.photos/900/600?random=6" alt="">
+                        <p>Lorem ipsum dolor sit amet.</p>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="photo">
+                        <img src="https://picsum.photos/900/600?random=7" alt="">
+                        <p>Lorem ipsum dolor sit amet.</p>
+                    </div>
+                </li>
+            </ul>
+
+        </article>
+    </main>
+</body>
+
+</html>
